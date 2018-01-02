@@ -10,7 +10,7 @@
         <a class="nav-link" href="<%= root_path%>">Home</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">Blog</a>
+        <a class="nav-link" href="<%= posts_path%>">Blog</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="<%= pages_about_path%>">About</a>
@@ -38,7 +38,7 @@
           <%= current_user.email%>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<%=edit_user_registration_path%>"> My Account</a>
+          <a class="dropdown-item" href="<%=edit_user_registration_path%>">My Account</a>
           <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
