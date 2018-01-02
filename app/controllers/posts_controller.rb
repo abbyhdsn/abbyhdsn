@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  # Checks for admin unless page is index or show
+  before_action :is_admin!, except: [:index, :show]
   # GET /posts
   # GET /posts.json
   def index

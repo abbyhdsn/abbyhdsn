@@ -39,7 +39,10 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<%=edit_user_registration_path%>">My Account</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <% if is_admin?%>
+          <a class="dropdown-item" href="<%= new_post_path%>">New Post</a>
+          <a class="dropdown-item" href="<%= new_category_path%>">New Category</a>
+          <% end%>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
         </div>
