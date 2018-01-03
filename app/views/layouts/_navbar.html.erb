@@ -12,22 +12,22 @@
         <li class="nav-item">
         <a class="nav-link" href="<%= posts_path%>">Blog</a>
       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%=posts_path(cat: Category.first.name) %>"> About Me </a>
+          <% Category.where.not(id: 1).left_joins(:posts).group(:id).order("COUNT(posts.id) DESC").limit(5).each do |cat|%>
+          <a class="dropdown-item" href="<%=posts_path(cat: cat.name) %>"> <%= cat.name%> </a>
+          <% end %>
+        </div>
+      </li>
        <li class="nav-item">
         <a class="nav-link" href="<%= pages_about_path%>">About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<%= pages_contact_path%>">Contact</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
