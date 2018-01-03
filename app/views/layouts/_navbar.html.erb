@@ -18,6 +18,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="<%=posts_path(cat: Category.first.name) %>"> About Me </a>
+          <div class="dropdown-divider"></div>
           <% Category.where.not(id: 1).left_joins(:posts).group(:id).order("COUNT(posts.id) DESC").limit(5).each do |cat|%>
           <a class="dropdown-item" href="<%=posts_path(cat: cat.name) %>"> <%= cat.name%> </a>
           <% end %>
