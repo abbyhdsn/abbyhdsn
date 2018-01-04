@@ -1,4 +1,12 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <h1 class="display-4"><%= @post.title %></h1>
+  <p class="lead"><%= @post.views %> | <%= @post.created_at.strftime("Posted on %B %d, %Y at %l:%M") %></p>
+  <hr class="my-4">
+  <p><%= @post.body %></p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+  </p>
+</div>
 
 <p>
   <strong>Title:</strong>
@@ -23,6 +31,11 @@
 <p>
   <strong>Drafts:</strong>
   <%= @post.drafts %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @post.category.name %>
 </p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
