@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-<p><% if current_user %><% if is_admin? %><%= link_to 'New Post', new_post_path %><% end %><% end %></p>
+<p><% if current_user && is_admin?%><%= link_to 'New Post', new_post_path %><% end %></p>
 <table>
   <thead>
     <tr>
@@ -23,9 +23,9 @@
         <td><%= post.user %></td>
         <td><%= post.drafts %></td>
         <td><%= link_to 'Show', post %></td>
-        <% if current_user %><% if is_admin? %> 
+        <% if current_user && is_admin? && current_user==@post.user %>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %><% end %>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
     </tr>
     <% end %>
   </tbody>
