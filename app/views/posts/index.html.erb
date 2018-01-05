@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Posts</h1>
-<p><% if current_user && is_admin?%><%= link_to 'New Post', new_post_path %><% end %></p>
+<p><% if current_user && is_admin? %><%= link_to 'New Post', new_post_path %><% end %></p>
 <table>
   <thead>
     <tr>
@@ -24,6 +24,10 @@
         <td><%= post.drafts %></td>
         <td><%= link_to 'Show', post %></td>
         <% if current_user && is_admin? && current_user==@post.user %>
+        <!-- current_user checks that user is logged in -->
+        <!-- is_admin? checks that user is an admin -->
+        <!-- current_user==@post.user check that each post belongs to the user -->
+        <!-- 'Edit' and 'Destroy' only appear if all three conditions are true-->
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td><% end %>
     </tr>
