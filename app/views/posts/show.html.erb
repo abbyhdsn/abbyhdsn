@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <h1 class="display-4"><%= @post.title %></h1>
-  <p class="lead"><em><strong>Written by</strong> <%= @post.user %><%= @post.created_at.strftime("on %B %d, %Y at %l:%M") %> to <%= @post.category.name %></em></p>
-  <p class="lead"><%= @post.views %> views | <%= @post.drafts %></p>
+  <p class="lead"><em><strong>Written by</strong> <%= @post.user.id %> <%= @post.created_at.strftime("on %B %d, %Y at %l:%M") %> to <%= @post.category.name %></em></p>
+  <p class="lead"><%= @post.views %> <%if @post.views==1%>view<%else%>views<%end%> | <%= @post.drafts %></p>
   <hr class="my-4">
   <p><%= @post.body %></p>
   <p class="lead">
@@ -41,4 +41,4 @@
 <% if current_user && is_admin? %>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <% end %>
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Back', posts_path %>-->
