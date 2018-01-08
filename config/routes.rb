@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin/dash'
+
   resources :categories
   resources :posts
   devise_for :users
