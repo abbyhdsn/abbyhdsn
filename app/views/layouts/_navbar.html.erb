@@ -43,6 +43,7 @@
           <% if is_admin?%>
           <a class="dropdown-item" href="<%= new_post_path%>">New Post</a>
           <a class="dropdown-item" href="<%= new_category_path%>">New Category</a>
+          <a class="dropdown-item" href="/admin/dash">Dash</a>
           <% end%>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
