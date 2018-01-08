@@ -10,16 +10,18 @@
         <a class="nav-link" href="<%= root_path%>">Home</a>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="<%= posts_path%>">Blog</a>
+        <a class="nav-link" href="<%= posts_path %>">Blog</a>
       </li>
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<%=posts_path(cat: Category.first.name) %>"> About Me </a>
+          <a class="dropdown-item" href="/categories"> All Categories</a>
+          <a class="dropdown-item" href="<%= posts_path(cat: Category.first.name) %>"> About Me </a>
+          <a class="dropdown-item" href=""> 2018 Reading Challenge</a>
           <div class="dropdown-divider"></div>
-          <% Category.where.not(id: 1).left_joins(:posts).group(:id).order("COUNT(posts.id) DESC").limit(5).each do |cat|%>
+          <% Category.where.not(id: 1).left_joins(:posts).group(:id).order("COUNT(posts.id) DESC").limit(5).each do |cat| %>
           <a class="dropdown-item" href="<%=posts_path(cat: cat.name) %>"> <%= cat.name%> </a>
           <% end %>
         </div>
