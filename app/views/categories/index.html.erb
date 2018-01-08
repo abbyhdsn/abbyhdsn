@@ -5,12 +5,12 @@
 <% end %></p>
 <% @categories.each do |category| %>
 <div class="jumbotron">
-	<h3><a href="<% category %>"><%= category.name %></a></h3>
+	<h3><%= category.name %></h3>
 	<p><%= category.description %></p>
-	<%= link_to 'Show', category %>
+	<%= link_to 'Posts', category %>
 	<% if current_user && is_admin? %>
-	<%= link_to 'Edit', edit_category_path(category) %>
-	<%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+	| <%= link_to 'Edit', edit_category_path(category) %>
+	| <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <% end %>
 <% end %>
