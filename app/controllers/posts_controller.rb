@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.paginate(:page => params[:page], :per_page => 1)
+    category_filter
   end
   # GET /posts/1
   # GET /posts/1.json
@@ -60,6 +60,14 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def category_filter
+    if params.has_key?(:cat)
+      @posts = Category.where(name: params[:cat]).first.posts.paginate(page: params[:page], per_page: 1)
+    else
+      @posts = Post.all.paginate(:page => params[:page], :per_page => 1)
     end
   end
 
