@@ -6,10 +6,18 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     category_filter
+    draft_filter
   end
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if current_user && current_user.admin?
+
+    else
+      if @post.drafts == false
+        redirect_to posts_path
+      end
+    end
     @post.views = @post.views+1
     @post.save
   end
@@ -68,6 +76,14 @@ class PostsController < ApplicationController
       @posts = Category.where(name: params[:cat]).first.posts.paginate(page: params[:page], per_page: 1)
     else
       @posts = Post.all.paginate(:page => params[:page], :per_page => 1)
+    end
+  end
+
+  def draft_filter
+    unless current_user && current_user.admin?
+      @posts = @posts.where(drafts: true)
+    else
+
     end
   end
 
