@@ -5,11 +5,20 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.paginate(:page => params[:page], :per_page => 1)
+    category_filter
+    draft_filter
+    @posts = @posts.paginate(page: params[:page], per_page: 1)
   end
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if current_user && current_user.admin?
+
+     else
+      if @post.drafts == false
+        redirect_to posts_path  
+       end 
+     end
     @post.views = @post.views+1
     @post.save
   end
@@ -60,6 +69,22 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def category_filter
+    if params.has_key?(:cat)
+      @posts = Category.where(name: params[:cat]).first.posts
+    else
+      @posts = Post.all
+    end
+  end
+
+  def draft_filter
+    unless current_user && current_user.admin?
+      @posts = @posts.where(drafts: false)
+    else
+
     end
   end
 
