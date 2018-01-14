@@ -1,21 +1,24 @@
-
 <p id="notice"><%= notice %></p>
+<link rel="stylesheet" type="text/css" href="style.css">
 <h1>Posts</h1>
 <p><% if current_user && is_admin? %><%= link_to 'New Post', new_post_path %><% end %></p>
 <% @posts.each do |post| %>
 <div class="jumbotron">
-<h3 class="display-4"><%= post.title %></h3>
-<p><em><strong>Written by</strong> <%= post.user.id %> for the <%= post.category.name %> series</em></p>
-<p><%= post.views %> views | <%= post.drafts %><% if current_user && is_admin? %>
-<!-- current_user checks that user is logged in -->
-<!-- is_admin? checks that user is an admin -->
-<!-- current_user==@post.user check that each post belongs to the user -->
-<!-- 'Edit' and 'Destroy' only appear if all three conditions are true-->
- | <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %></p>
-<p><%= post.body %>
-</p>
-<p><%= link_to 'Read More', post %></p>
+	<h3 class="display-4"><%= post.title %></h3>
+	<p><em><strong>Written by</strong> <%= post.user.id %> for the <%= post.category.name %> series</em></p>
+	<p>
+		<%= post.views %> views | <%= post.drafts %><% if current_user && is_admin? %>
+		<!-- current_user checks that user is logged in -->
+		<!-- is_admin? checks that user is an admin -->
+		<!-- current_user==@post.user check that each post belongs to the user -->
+		<!-- 'Edit' and 'Destroy' only appear if all three conditions are true-->
+		| <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+		<% end %>
+		
+	</p>
+	<p><%= post.body %>
+	</p>
+	<p><%= link_to 'Read More', post %></p>
 </div>
 <% end %>
 <div class="digg_pagination"><%= will_paginate @posts %></div>
