@@ -5,7 +5,7 @@
 <% @posts.each do |post| %>
 <div class="jumbotron">
 	<h3 class="display-4"><%= post.title %></h3>
-	<p><em><strong>Written by</strong> <%= post.user.id %> for the <%= post.category.name %> series</em></p>
+	<p><em><strong>Written by</strong> <%= post.user.email %> for the <%= post.category.name %> series</em></p>
 	<p>
 		<%= post.views %> views | <%= post.drafts %><% if current_user && is_admin? %>
 		<!-- current_user checks that user is logged in -->
@@ -14,11 +14,11 @@
 		<!-- 'Edit' and 'Destroy' only appear if all three conditions are true-->
 		| <%= link_to 'Edit', edit_post_path(post) %> | <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
 		<% end %>
-		
+
 	</p>
 	<p><%= post.body %>
 	</p>
-	<p><%= link_to 'Read More', post %></p>
+	<p><%= link_to 'Read More', post_path(post) %></p>
 </div>
 <% end %>
 <div class="digg_pagination"><%= will_paginate @posts %></div>

@@ -7,6 +7,7 @@ class PostsController < ApplicationController
   def index
     category_filter
     draft_filter
+    @posts = @posts.order("created_at DESC")
     @posts = @posts.paginate(page: params[:page], per_page: 1)
   end
   # GET /posts/1
@@ -15,9 +16,9 @@ class PostsController < ApplicationController
     if current_user && current_user.admin?
 
      else
-      if @post.drafts == false
-        redirect_to posts_path  
-       end 
+      if @post.drafts == true
+        redirect_to posts_path
+       end
      end
     @post.views = @post.views+1
     @post.save
@@ -96,6 +97,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body, :drafts, :category_id)
+      params.require(:post).permit(:title, :body, :drafts, :category_id, :cover)
     end
 end

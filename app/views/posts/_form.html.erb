@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :title %>
+    <%= f.input :cover, as: :file %>
     <%= f.input :body %>
     <%= f.association :category %>
     <%= f.input :drafts %>

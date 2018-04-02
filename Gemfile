@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'devise'
 gem 'will_paginate', '~> 3.1.0'
+gem 'paperclip'
 #####
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

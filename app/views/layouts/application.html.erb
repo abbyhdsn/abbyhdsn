@@ -8,11 +8,45 @@
 
 	</head>
 	<body>
-		<%= render "layouts/navbar"%>
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-		
+		<%= render "layouts/navbar" %>
+		<%= render "layouts/alerts" %>
+
 		<%= yield %>
 	</body>
-	<footer><script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script></footer>
+	<footer><script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+		<!-- Menu Toggle Script -->
+		            <script>
+		            $("#menu-toggle").click(function (e) {
+		            e.preventDefault();
+		            $("#wrapper").toggleClass("toggled");
+		            });
+		            </script>
+		            <script>
+		            $('ul.nav li.dropdown').hover(function () {
+		            $(this).css('cursor', 'pointer');
+		            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+		            }, function () {
+		            $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+		            });
+		            </script>
+		            <script>
+		            $(document).ready(function () {
+		            $('.dropdown-toggle').dropdown();
+		            });
+		            </script>
+		            <script>
+		            $(function () {
+		            $('#notice_wrapper').delay(500).fadeIn('slow', function () {
+		            $(this).delay(1000).fadeOut();
+		            });
+		            });
+		            </script>
+		            <script>
+		            $(function () {
+		            $('#alert_wrapper').delay(500).fadeIn('slow', function () {
+		            $(this).delay(2500).fadeOut();
+		            });
+		            });
+		            </script>
+	</footer>
 </html>
