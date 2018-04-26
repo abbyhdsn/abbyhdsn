@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     category_filter
     draft_filter
     @posts = @posts.order("created_at DESC")
-    @posts = @posts.paginate(page: params[:page], per_page: 1)
+    @posts = @posts.paginate(page: params[:page], per_page: 2)
   end
   # GET /posts/1
   # GET /posts/1.json
