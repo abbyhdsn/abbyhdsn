@@ -1,5 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<%= root_path%>">abbyhdsn</a>
+<div class="container" align="center">
+  <div class="row align-items-start">
+   
+  </div>
+  <div class="row align-items-center">
+    <div class="col align-self-center">
+   <img src="https://img00.deviantart.net/c5e2/i/2018/094/a/b/brick_by_boring_brick_by_abbyhdsn-dc7x7ds.jpg" class="img-fluid" alt="brick by boring brick">
+ </div>
+  </div>
+  <div class="row align-items-end">
+   <div class="col align-self-center"> <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="<%= root_path%>">abbyhdsn
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,16 +18,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="<%= root_path%>">Home</a>
+        <a class="btn, nav-link" href="<%= root_path%>">Home</a>
       </li>
         <li class="nav-item">
         <a class="nav-link" href="<%= posts_path %>">Blog</a>
       </li>
        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="dropbtn, nav-link" href="/categories">
           Categories
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-content">
           <a class="dropdown-item" href="/categories"> All Categories</a>
           <a class="dropdown-item" href="<%= posts_path(cat: Category.first.name) %>"> About Me </a>
           <a class="dropdown-item" href=""> 2018 Reading Challenge </a>
@@ -62,3 +73,7 @@
     </ul>
   </div>
 </nav>
+</div>
+  </div>
+</div>
+
