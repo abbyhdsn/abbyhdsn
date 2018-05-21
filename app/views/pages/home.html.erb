@@ -1,20 +1,31 @@
 <title><% @title="abbyhdsn"%></title>
-<div class="container fullbody" align="left">
-	<h1>Home</h1>
-	<% if current_user %>
-	<h2>Welcome Back!</h2>
-	<% else %>
-	<h2><a href="<%= new_user_registration_path %>"> Sign up</a> for updates!</h2>
-	<%end%>
-	<h2>We Are Launching Soon!</h2>
-	<div>
-		<p>Hey there - thanks for stopping by. :)</p>
-		<p>Unfortunately we are still under construction. :( </p>
-		<p> In the meantime, follow me on any of these platforms to get updates about our launch!</p>
-		<a href="https://www.facebook.com/abbyhdsn/"><i class="fab fa-facebook fa-2x"></i></a>
-		<a href=""><i class="fab fa-twitter-square fa-2x"></i></a>
-		<a href="https://www.instagram.com/abby_hdsn/"><i class="fab fa-instagram fa-2x"></i></a>
-		<a href="https://www.pinterest.com/abbyhdsn/"><i class="fab fa-pinterest-square fa-2x"></i></a>
-		<a href="https://abbyhdsn.deviantart.com/"><i class="fab fa-deviantart fa-2x"></i></a>
+<div class="container cushion" align="left">
+	<div class="row">
+		<div class="col-8">
+			<h1>Home</h1>
+			<div>
+				<% if current_user %>
+				<h2>Welcome Back!</h2>
+				<% else %>
+				<h2><a href="<%= new_user_registration_path %>"> Sign up</a> for updates!</h2>
+				<%end%>
+				<h2>We Are Launching Soon!</h2>
+				<div>
+					<p>Hey there - thanks for stopping by. :)</p>
+					<p>Unfortunately we are still under construction. :( </p>
+					<p> In the meantime, follow me on any of these platforms to get updates about our launch!</p>
+					<a href="https://www.facebook.com/abbyhdsn/"><i class="fab fa-facebook fa-2x"></i></a>
+					<a href=""><i class="fab fa-twitter-square fa-2x"></i></a>
+					<a href="https://www.instagram.com/abby_hdsn/"><i class="fab fa-instagram fa-2x"></i></a>
+					<a href="https://www.pinterest.com/abbyhdsn/"><i class="fab fa-pinterest-square fa-2x"></i></a>
+					<a href="https://abbyhdsn.deviantart.com/"><i class="fab fa-deviantart fa-2x"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-4 sidebar">
+			<h1>Updates</h1>
+			<h3>Goodreads</h3>
+			<h3><a href="/pages/about">About Me</a></h3>
+		</div>
 	</div>
 </div>
