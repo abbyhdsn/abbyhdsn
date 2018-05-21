@@ -1,79 +1,108 @@
 <div class="container" align="center">
-  <div class="row align-items-start">
-   
+  <div class="row align-items-right">
+    <nav class="navbar navbar-expand-lg navbar-light" align="">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <% if current_user %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.email%>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<%=edit_user_registration_path%>">My Account</a>
+              <% if is_admin?%>
+              <a class="dropdown-item" href="<%= new_post_path%>">New Post</a>
+              <a class="dropdown-item" href="<%= new_category_path%>">New Category</a>
+              <a class="dropdown-item" href="/admin/dash">Dash</a>
+              <% end%>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
+            </div>
+          </li>
+          <% else%>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path%>">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path%>">Sign Up</a>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
   </div>
   <div class="row align-items-center">
     <div class="col align-self-center">
-   <img src="https://img00.deviantart.net/c5e2/i/2018/094/a/b/brick_by_boring_brick_by_abbyhdsn-dc7x7ds.jpg" class="img-fluid" alt="brick by boring brick">
- </div>
+      <a href="<%= root_path%>">
+        <img src="https://orig00.deviantart.net/c918/f/2018/140/2/e/cropped_for_banner_by_abbyhdsn-dcc3qsf.jpg" class="img-fluid" alt="Image by abbyhdsn">
+      </a>
+    </div>
   </div>
   <div class="row align-items-end">
-   <div class="col align-self-center"> <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="<%= root_path%>">abbyhdsn
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="btn, nav-link" href="<%= root_path%>">Home</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<%= posts_path %>">Blog</a>
-      </li>
-       <li class="nav-item dropdown">
-        <a class="dropbtn, nav-link" href="/categories">
-          Categories
-        </a>
-        <div class="dropdown-content">
-          <a class="dropdown-item" href="/categories"> All Categories</a>
-          <a class="dropdown-item" href="<%= posts_path(cat: Category.first.name) %>"> About Me </a>
-          <a class="dropdown-item" href=""> 2018 Reading Challenge </a>
-          <div class="dropdown-divider"></div>
-          <% Category.where.not(id: 1).left_joins(:posts).group(:id).order("COUNT(posts.id) DESC").limit(5).each do |cat| %>
-          <a class="dropdown-item" href="<%=posts_path(cat: cat.name) %>"> <%= cat.name%> </a>
+    <div class="col align-self-center"> <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="btn, nav-link" href="<%= root_path%>">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= posts_path %>">Blog</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="dropbtn, nav-link" href="/categories">
+              Categories
+            </a>
+            <div class="dropdown-content">
+              <a class="dropdown-item" href="/categories"> All Categories</a>
+              <a class="dropdown-item" href="<%= posts_path(cat: Category.first.name) %>"> About Me </a>
+              <a class="dropdown-item" href=""> 2018 Reading Challenge </a>
+              <div class="dropdown-divider"></div>
+              <% Category.where.not(id: 1).left_joins(:posts).group(:id).order("COUNT(posts.id) DESC").limit(5).each do |cat| %>
+              <a class="dropdown-item" href="<%=posts_path(cat: cat.name) %>"> <%= cat.name%> </a>
+              <% end %>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= pages_about_path%>">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= pages_contact_path%>">Contact</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <% if current_user %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.email%>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<%=edit_user_registration_path%>">My Account</a>
+              <% if is_admin?%>
+              <a class="dropdown-item" href="<%= new_post_path%>">New Post</a>
+              <a class="dropdown-item" href="<%= new_category_path%>">New Category</a>
+              <a class="dropdown-item" href="/admin/dash">Dash</a>
+              <% end%>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
+            </div>
+          </li>
+          <% else%>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_session_path%>">Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_user_registration_path%>">Sign Up</a>
+          </li>
           <% end %>
-        </div>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="<%= pages_about_path%>">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= pages_contact_path%>">Contact</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <% if current_user %>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-          <%= current_user.email%>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="<%=edit_user_registration_path%>">My Account</a>
-          <% if is_admin?%>
-          <a class="dropdown-item" href="<%= new_post_path%>">New Post</a>
-          <a class="dropdown-item" href="<%= new_category_path%>">New Category</a>
-          <a class="dropdown-item" href="/admin/dash">Dash</a>
-          <% end%>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" rel="nofollow" data-method="delete" href="/users/sign_out">Sign Out</a>
-        </div>
-      </li>
-      <% else%>
-       <li class="nav-item">
-        <a class="nav-link" href="<%= new_user_session_path%>">Sign In</a>
-      </li>
-       <li class="nav-item">
-        <a class="nav-link" href="<%= new_user_registration_path%>">Sign Up</a>
-      </li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
-</div>
+        </ul>
+      </div>
+    </nav>
   </div>
 </div>
-
+</div>
